@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
                 messagingHour = setTime.getHour();
                 messagingMinute = setTime.getMinute();
                 Toast.makeText(getBaseContext(),"실행 잘되요",Toast.LENGTH_LONG).show();
+
             }
         });
 

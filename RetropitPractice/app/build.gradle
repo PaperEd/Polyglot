@@ -4,7 +4,7 @@ android {
     compileSdkVersion 26
     buildToolsVersion "26.0.1"
     defaultConfig {
-        applicationId "compapered.httpsgithub.firebase"
+        applicationId "compapered.httpsgithub.retropitpractice"
         minSdkVersion 21
         targetSdkVersion 26
         versionCode 1
@@ -26,9 +26,5 @@ dependencies {
     })
     compile 'com.android.support:appcompat-v7:26.+'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
-    compile 'com.squareup.retrofit:retrofit:2.0.0-beta2'
-    compile 'com.squareup.retrofit:converter-gson:2.0.0-beta2'
     testCompile 'junit:junit:4.12'
-    compile 'com.google.firebase:firebase-messaging:10.0.1'
 }
-apply plugin: 'com.google.gms.google-services'

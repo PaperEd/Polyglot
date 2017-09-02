@@ -1,9 +1,17 @@
-var express = require('express');
-var router = express.Router();
+module.exports = function(app, fs)
+{
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
-});
+    app.post('/getAlarm/:time:', function(req, res){
 
-module.exports = router;
+        var result = {  };
+        // CHECK REQ VALIDITY
+        if(!req.body["time"] || !req.body["hour"]){
+            result["success"] = 0;
+            result["error"] = "invalid request";
+            res.json(result);
+            return;
+        }
+
+
+
+}

@@ -8,6 +8,8 @@ import android.support.v4.app.NotificationCompat;
 
 import com.google.firebase.messaging.RemoteMessage;
 
+import java.util.Map;
+
 /**
  * Created by dwg76 on 2017-09-01.
  */
@@ -19,7 +21,9 @@ public class FirebaseMessageReceive extends com.google.firebase.messaging.Fireba
 
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage){
-        msg = remoteMessage.getNotification().getBody();
+        Map<String ,String > data = remoteMessage.getData();
+//        msg = remoteMessage.getNotification().getBody();
+        msg = data.get("body");
 
         Intent notifiIntent = new Intent(this,MainActivity.class);
         notifiIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

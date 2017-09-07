@@ -4,6 +4,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TimePicker;
@@ -38,12 +39,13 @@ public class MainActivity extends AppCompatActivity {
                 ApiInterface service = client.create(ApiInterface.class);
                 TimePicker setTime = (TimePicker)findViewById(R.id.setTime);
                 String refreshedToken = FirebaseInstanceId.getInstance().getToken();
+                Log.d("Refreshed","RefreshedToken : " + refreshedToken);
                 Call<Time> call = service.repo(refreshedToken,setTime.getHour(),setTime.getMinute());
                 call.enqueue(new Callback<Time>() {
                     @Override
                     public void onResponse(Response<Time> response, Retrofit retrofit) {
                         if(response.isSuccess()){
-                            Time time = response.body();
+//                            Time time = response.body();
                             Toast.makeText(getBaseContext(),"실행 잘되요",Toast.LENGTH_LONG).show();
                         } else{
                             Toast.makeText(getBaseContext(),"리스폰스가 안되잖아",Toast.LENGTH_LONG).show();

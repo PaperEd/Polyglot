@@ -135,46 +135,32 @@ var authUser = function (database, id, password, callback) {
     })
 };
 
-/*
-var authTime = function (database,hour,minute,callback) {
-    console.log('authUser 호출됨');
-
-    var users = database.collection('users');
-
-    users.find({"hour" : hour, "minute" : minute}).toArray(function (err,docs) {
-        if(err){
-            callback(err,null);
-            return;
-        }
-        if(docs.length > 0){
-            console.log('일치하는 사용자 찾음');
-            callback(null,docs);
-        }else{
-            console.log('못찾음');
-            callback(null,null);
-        }
-    })
-};
-*/
-
 var sendMessage = function (ID, hour, minute) {
     console.log('메세지 전송 실행');
+    console.log(hour);
+    console.log(minute);
     var FCM = require('fcm').FCM;
     var apiKey = 'AAAAIX79jKM:APA91bH8T6aYP8FtKsS_pHR0scmQBomxJkicFe4OZepDhd5moFxfRi1H-Ad3gLIMrWVGdkv0-XbDpl55MAq-xP-uTyS1Z2H3JdSjq5Z63wL7c1xNWZIqmrUGSdpC5qhRgpw71BB4mIXN';
     var fcm = new FCM(apiKey);
     var message = {
-        registration_id: ID,
-        data1: '되냐?',
-        data2: '되냐?2'
+        "to": ID,
+        "body": hour + "시  " + minute + "분"
     };
-    fcm.send(message, function (err, messageId) {
-        if (err) {
-            console.log("Something has gone wrong!");
+    setInterval(function () {
+        var date = new Date();
+        var nowMin = date.getMinutes();
+        var nowHour = date.getHours();
+        var nowMin = date.getMinutes();
+        if (nowMin == minute && nowHour == hour && nowMin == 0) {
+            fcm.send(message, function (err, messageId) {
+                if (err) console.log(err);
+
+                console.log('message ID : ' + messageId)
+            });
         }
-        else {
-            console.log("Sent with message ID: ", messageId);
-        }
-    });
+
+    }, 1000);
+
 
 };
 //

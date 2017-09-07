@@ -9,6 +9,6 @@ import retrofit.http.Query;
  */
 
 public interface ApiInterface {
-    @POST
-    Call<Time> repo(@Query("hour")int hour , @Query("minute") int minute);
+    @POST("process/setTime")
+    Call<Time> repo(@Query("ID")String ID, @Query("hour")int hour , @Query("minute") int minute);
 }

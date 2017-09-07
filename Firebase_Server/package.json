@@ -13,12 +13,14 @@
     "express": "~4.15.2",
     "express-error-handler": "^1.1.0",
     "express-session": "^1.15.5",
+    "fcm": "^1.0.3",
+    "fcm-push": "^1.1.2",
     "jade": "~1.11.0",
+    "mongodb": "latest",
     "mongoose": "^4.11.10",
     "morgan": "~1.8.1",
     "serve-favicon": "~2.4.2",
     "serve-static": "latest",
-    "static": "^2.0.0",
-    "mongodb": "latest"
+    "static": "^2.0.0"
   }
 }

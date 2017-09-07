@@ -5,6 +5,10 @@ package compapered.httpsgithub.firebase;
  */
 
 public class Time {
+    public Time(int hour, int minute){
+        this.hour = hour;
+        this.minute = minute;
+    }
     int hour;
     int minute;
 

@@ -10,8 +10,6 @@ var errorHandler = require('errorhandler');
 var expressErrorHandler = require('express-error-handler');
 
 var expressSession = require('express-session');
-var mongoose = require('mongoose');
-var FCM = require('fcm-push');
 var app = express();
 
 app.set('port', process.env.PORT || 3000);
@@ -115,26 +113,6 @@ var authUser = function (database, id, password, callback) {
     })
 };
 
-var authUser = function (database, id, password, callback) {
-    console.log('authUser 호출됨');
-
-    var users = database.collection('users');
-
-    users.find({"id": id, "password": password}).toArray(function (err, docs) {
-        if (err) {
-            callback(err, null);
-            return;
-        }
-        if (docs.length > 0) {
-            console.log('일치하는 사용자 찾음');
-            callback(null, docs);
-        } else {
-            console.log('못찾음');
-            callback(null, null);
-        }
-    })
-};
-
 var sendMessage = function (ID, hour, minute) {
     console.log('메세지 전송 실행');
     console.log(hour);
@@ -146,20 +124,21 @@ var sendMessage = function (ID, hour, minute) {
         "to": ID,
         "body": hour + "시  " + minute + "분"
     };
+    var isCall = false
     setInterval(function () {
         var date = new Date();
         var nowMin = date.getMinutes();
         var nowHour = date.getHours();
         var nowMin = date.getMinutes();
-        if (nowMin == minute && nowHour == hour && nowMin == 0) {
+        if (nowMin == minute && nowHour == hour && isCall == false) {
             fcm.send(message, function (err, messageId) {
                 if (err) console.log(err);
-
+                isCall = true;
                 console.log('message ID : ' + messageId)
             });
         }
 
-    }, 1000);
+    }, 7000);
 
 
 };

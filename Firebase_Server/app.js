@@ -118,7 +118,7 @@ var sendMessage = function (ID, hour, minute) {
     console.log(hour);
     console.log(minute);
     var FCM = require('fcm').FCM;
-    var apiKey = 'AAAAIX79jKM:APA91bH8T6aYP8FtKsS_pHR0scmQBomxJkicFe4OZepDhd5moFxfRi1H-Ad3gLIMrWVGdkv0-XbDpl55MAq-xP-uTyS1Z2H3JdSjq5Z63wL7c1xNWZIqmrUGSdpC5qhRgpw71BB4mIXN';
+    var apiKey = '';
     var fcm = new FCM(apiKey);
     var message = {
         "to": ID,

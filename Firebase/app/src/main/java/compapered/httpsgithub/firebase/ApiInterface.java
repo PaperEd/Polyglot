@@ -1,7 +1,7 @@
 package compapered.httpsgithub.firebase;
 
 import retrofit.Call;
-import retrofit.http.POST;
+import retrofit.http.GET;
 import retrofit.http.Query;
 
 /**
@@ -9,6 +9,6 @@ import retrofit.http.Query;
  */
 
 public interface ApiInterface {
-    @POST("process/setTime")
+    @GET("process/setTime")
     Call<Time> repo(@Query("ID")String ID, @Query("hour")int hour , @Query("minute") int minute);
 }
